@@ -91,13 +91,22 @@
 		return m_name;
 	}
 
+	void Player::add_win()
+	{
+		m_wins += 1;
+	}
+
+	int Player::get_wins()
+	{
+		return m_wins;
+	}
+
 	void Player::get_info()
 	{
 		std::cout << "Your name: " << m_name << std::endl;
 		std::cout << "Player type: " << m_type << std::endl;
 		std::cout << "Amount in Bank: " << m_money << std::endl;
 		std::cout << "Games won: " << m_wins << std::endl;
-		std::cout << "Games played: " << m_total_rounds << std::endl;
 		std::cout << "Last score rolled: " << roll_name(m_score) << std::endl;
 	};
 

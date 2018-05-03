@@ -5,9 +5,11 @@
 #include <iostream>
 #include "player.h"
 #include "game.h"
+#include <thread>
+#include <chrono>
 
 Player welcome_screen();
 void main_screen(Player player, Player ai_1, Player ai_2, Player ai_3);
-void end_screen();
+void end_screen(Player player, Player ai_1, Player ai_2, Player ai_3);
 
 #endif

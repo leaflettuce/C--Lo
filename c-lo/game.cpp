@@ -10,6 +10,7 @@ int get_roll()  //Rolls three die and returns score
 	dice2 = get_number();
 
 	std::cout << dice0 << ", " << dice1 << ", " << dice2 << "..." << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(450));
 
 	if (dice0 == 4)   //Check for 4,5,6
 	{
@@ -139,56 +140,37 @@ int get_players()
 
 
 
-void compare_scores(Player player, Player ai_1, Player ai_2, Player ai_3)
+std::string compare_scores(Player player, Player ai_1, Player ai_2, Player ai_3)
 {
 	int bet_amount = player.get_bet_amount();
+	
 	//player wins
 	if (player.get_score() > ai_1.get_score() && player.get_score() > ai_2.get_score() && player.get_score() > ai_3.get_score())
 	{
-		std::cout << player.get_name() << " won the round!" << std::endl;
-		std::cout << bet_amount * 3 << " added to wallet! \n.\n." << std::endl;
-		player.add_money(bet_amount * 3);
-		ai_1.lose_money(bet_amount);
-		ai_2.lose_money(bet_amount);
-		ai_3.lose_money(bet_amount);
+		return player.get_name();
 	}
 
 	//ai_1 wins
 	else if (ai_1.get_score() > player.get_score() && ai_1.get_score() > ai_2.get_score() && ai_1.get_score() > ai_3.get_score())
 	{
-		std::cout << ai_1.get_name() << " won the round." << std::endl;
-		std::cout << "$" << bet_amount << " lost.. \n.\n." << std::endl;
-		ai_1.add_money(bet_amount * 3);
-		player.lose_money(bet_amount);
-		ai_2.lose_money(bet_amount);
-		ai_3.lose_money(bet_amount);
+		return ai_1.get_name();
 	}
 
 	//ai_2 wins
 	else if (ai_2.get_score() > ai_1.get_score() && ai_2.get_score() > player.get_score() && ai_2.get_score() > ai_3.get_score())
 	{
-		std::cout << ai_2.get_name() << " won the round." << std::endl;
-		std::cout << "$" << bet_amount << " lost.. \n.\n." << std::endl;
-		ai_2.add_money(bet_amount * 3);
-		ai_1.lose_money(bet_amount);
-		player.lose_money(bet_amount);
-		ai_3.lose_money(bet_amount);
+		return ai_2.get_name();
 	}
 
 	//ai_3 wins
 	else if (ai_3.get_score() > ai_1.get_score() && ai_3.get_score() > ai_2.get_score() && ai_3.get_score() > player.get_score())
 	{
-		std::cout << player.get_name() << " won the round." << std::endl;
-		std::cout << "$" << bet_amount << " lost.. \n.\n." << std::endl;
-		ai_3.add_money(bet_amount * 3);
-		ai_1.lose_money(bet_amount);
-		ai_2.lose_money(bet_amount);
-		player.lose_money(bet_amount);
+		return ai_3.get_name();
 	}
 
 	else
 	{
-		std::cout << "Push -- No change in money! \n.\n.";
+		return "push";
 	}
 
 }

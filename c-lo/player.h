@@ -28,6 +28,8 @@ public:
 	int get_bet_amount();
 	void set_bet_amount(int amount);
 	int get_score();
+	void add_win();
+	int get_wins();
 	std::string get_name();
 };
 
